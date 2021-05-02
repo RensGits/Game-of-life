@@ -2,17 +2,17 @@ This is my attempt at making the game of life from scratch with Javascript, with
 
 My logic is as follows;
 
-1. ### Create a grid with blocks that have their row and column number as coordinatates as such;
+1. Create a grid with blocks that have their row and column number as coordinatates as such;
 
     | 1,1 | 1,2 | 1,3 | 1,4 |
 
     | 2,1 | 2,2 | 2,3 | 2,4 |
 
-    | 3,1 | 3,2 | 3,3 | 3,4 |
+    | 3,1 | 3,2 | ***3,3*** | 3,4 |
 
     | 4,1 | 4,2 | 4,3 | 4,4 |
 
-2. ### The sum of all grid items is mapped to compare each item with each other item by itterating over it.
+2. The sum of all grid items is mapped to compare each item with each other item by itterating over it.
 
     | 2 | 3 | 4 | 5 |
 
@@ -83,4 +83,4 @@ My logic is as follows;
     | x | x | 7 | x |
 
 
-3. ### Apply the rules of Game of Life to Neighbours
+3. Apply the rules of Game of Life to Neighbours
