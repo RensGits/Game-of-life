@@ -6,14 +6,19 @@
     gridColumnCoordinates = [1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4,]
     
     for (let blockNumber = 0; blockNumber < 16; blockNumber++ ){
-        console.log(blockNumber)
+        
         blockName = 'block' + blockNumber
-        console.log(blockName);
+        
         document.getElementById(blockName).innerHTML = 'test';
         const sumOfGridCoordinates = gridRowCoordinates[blockNumber] + gridColumnCoordinates[blockNumber]
-            
-     
-        console.log('sum of block coordinates = ' + sumOfGridCoordinates)
+        console.log('sum of grid coordinates' + sumOfGridCoordinates)
+        for (let b = 0; b < 16; b++){
+            const sumOfGridCoordinatePossibleNeighbour = gridRowCoordinates[b] + gridColumnCoordinates[b]
+            console.log('sum of possible neighbour' + sumOfGridCoordinatePossibleNeighbour)
+        }
+        // console.log(blockNumber)
+        // console.log(blockName);   
+        // console.log('sum of block coordinates = ' + sumOfGridCoordinates)
         
         }
     
