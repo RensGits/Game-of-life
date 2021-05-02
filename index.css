@@ -1,0 +1,30 @@
+.mainGrid{
+    display: grid;
+    height: auto;
+    height: 96vh;
+    width: 99vw;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    background-color: orangered;
+}
+
+.gameContent{
+    display:grid;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-column: 4/8;
+    grid-row: 3/9;
+    background-color: whitesmoke;
+}
+
+.starterBlock{
+    grid-column: 4 / 5;
+    grid-row: 5 / 6;
+    background-color: black;
+}
+
+.block{
+    background-color: white;
+}
