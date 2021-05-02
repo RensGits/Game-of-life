@@ -1,8 +1,8 @@
-This is my attempt at making the game of life from scratch with Javascript, without the use of any external sources such as blog posts or video tutorials on the Game of Life. 
+###This is my attempt at making the game of life from scratch with Javascript, without the use of any external sources such ###as blog posts or video tutorials on the Game of Life. 
 
-My logic is as follows;
+###My logic is as follows;
 
-1. Create a grid with blocks that have their row and column number as coordinatates as such;
+###1. Create a grid with blocks that have their row and column number as coordinatates as such;
 
     | 1,1 | 1,2 | 1,3 | 1,4 |
 
@@ -12,7 +12,7 @@ My logic is as follows;
 
     | 4,1 | 4,2 | 4,3 | 4,4 |
 
-2. The sum of all grid items is mapped to compare each item with each other item by itterating over it.
+###2. The sum of all grid items is mapped to compare each item with each other item by itterating over it.
 
     | 2 | 3 | 4 | 5 |
 
@@ -33,7 +33,7 @@ My logic is as follows;
 
     | x | x | 5 | x |
 
-    | x | 5 | 6 | 7 |
+    | x | 5 | ***6*** | 7 |
 
     | 5 | x | 7 | x |
 
@@ -45,15 +45,30 @@ My logic is as follows;
     The row and column maps are as follows; 
 
 
-    | 1 | 1 | 1 | 1 |       | 1 | 2 | 3 | 4 |                           | x | x | x | x |       | x | 2 | 3 | 4 |
+    | 1 | 1 | 1 | 1 |       | 1 | 2 | 3 | 4 |                           
 
-    | 2 | 2 | 2 | 2 |       | 1 | 2 | 3 | 4 |       aplying the         | 2 | 2 | 2 | 2 |       | x | 2 | 3 | 4 |
-                                                logic above we get -->   
-    | 3 | 3 | 3 | 3 |       | 1 | 2 | 3 | 4 |                           | 3 | 3 | 3 | 3 |       | x | 2 | 3 | 4 |
+    | 2 | 2 | 2 | 2 |       | 1 | 2 | 3 | 4 |                           
+                                                  
+    | 3 | 3 | ***3*** | 3 |       | 1 | 2 | ***3*** | 4 |                           
 
-    | 4 | 4 | 4 | 4 |       | 1 | 2 | 3 | 4 |                           | 4 | 4 | 4 | 4 |       | x | 2 | 3 | 4 |
+    | 4 | 4 | 4 | 4 |       | 1 | 2 | 3 | 4 |                           
 
-        **rows**               **columns**                                  **rows**               **columns**
+        **rows**               **columns**                                 
+
+
+    Aplying the logic above we get:
+
+
+    | x | x | x | x |       | x | 2 | 3 | 4 |
+
+    | x | x | x | x |       | x | 2 | 3 | 4 |
+
+    | 3 | 3 | ***3*** | 3 |       | x | 2 | ***3*** | 4 |
+    
+    | 4 | 4 | 4 | 4 |       | x | 2 | 3 | 4 |
+
+        **rows**               **columns**
+
 
 
 
@@ -63,6 +78,9 @@ My logic is as follows;
 
     | x | x | 5 | x |
 
-    | x | 5 | 6 | 7 |
+    | x | 5 | ***6*** | 7 |
 
     | x | x | 7 | x |
+
+
+###3. Apply the rules of Game of Life to Neighbours
