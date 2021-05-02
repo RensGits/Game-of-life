@@ -9,18 +9,43 @@
         
         blockName = 'block' + blockNumber
         
-        document.getElementById(blockName).innerHTML = 'test';
+        document.getElementById(blockName).innerHTML = '<p>' + gridRowCoordinates[blockNumber].toString() +' / ' + gridColumnCoordinates[blockNumber].toString() + '</p>';
         const sumOfGridCoordinates = gridRowCoordinates[blockNumber] + gridColumnCoordinates[blockNumber]
-        console.log('sum of grid coordinates' + sumOfGridCoordinates)
+        
+        console.log(blockName + ' / sum of grid coordinates' + sumOfGridCoordinates)
         for (let b = 0; b < 16; b++){
-            const sumOfGridCoordinatePossibleNeighbour = gridRowCoordinates[b] + gridColumnCoordinates[b]
-            console.log('sum of possible neighbour' + sumOfGridCoordinatePossibleNeighbour)
+             const sumOfGridCoordinatePossibleNeighbour = gridRowCoordinates[b] + gridColumnCoordinates[b];
+               console.log('sub-block' + [b])
+
+                sumOfRowFuture = gridRowCoordinates[blockNumber] - gridRowCoordinates[b];
+                sumofColumnFuture = gridColumnCoordinates[blockNumber] - gridColumnCoordinates[b];
+    
+               
+                if  ((sumOfGridCoordinates != sumOfGridCoordinatePossibleNeighbour) && 
+                    ((sumOfGridCoordinates - sumOfGridCoordinatePossibleNeighbour )<= 1) && 
+                    ((sumOfGridCoordinates - sumOfGridCoordinatePossibleNeighbour ) >= -1) && 
+                    ((sumOfRowFuture ) <= 1 && (sumOfRowFuture >= -1)) && 
+                    ((sumofColumnFuture ) <= 1 && (sumofColumnFuture >= -1))){
+                            console.log('this is a neighbor of parent block');
+                }
+            }
         }
+    
+
+
+
+
+
+
+
+
+
+        
         // console.log(blockNumber)
         // console.log(blockName);   
         // console.log('sum of block coordinates = ' + sumOfGridCoordinates)
         
-        }
+        
     
 
     // every grid item has coordinates based on their grid-row and grid-columm
