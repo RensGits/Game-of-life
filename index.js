@@ -8,11 +8,11 @@
 
    
    // GRID AND NEIGHBOUR CHECKER //
-   
+   const btn = document.getElementById('button');
    gridRowCoordinates = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4]
    gridColumnCoordinates = [1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4,]
 
-   
+   btn.addEventListener("click", 
    function gameOfLife(){
 
    
@@ -37,12 +37,13 @@
         console.log(blockName)
        
        
-        let neighbourCount = 0;
+        let aliveNeighbourCount = 0;
        
 
        
            
-
+       
+        
        for (let b = 0; b < 16; b++){
             setTimeout(neighbourChecker(b), b * 3000)
            
@@ -56,7 +57,7 @@
            neighbourColor = window.getComputedStyle(neighbourBlock).getPropertyValue('background-color');
            
             const sumOfGridCoordinatePossibleNeighbour = gridRowCoordinates[b] + gridColumnCoordinates[b];
-              console.log('child-block' + [b])
+            //   console.log('child-block' + [b])
        
                sumOfRowFuture = gridRowCoordinates[blockNumber] - gridRowCoordinates[b];
                sumofColumnFuture = gridColumnCoordinates[blockNumber] - gridColumnCoordinates[b];
@@ -67,32 +68,45 @@
                    ((sumOfGridCoordinates - sumOfGridCoordinatePossibleNeighbour ) >= -1) && 
                    ((sumOfRowFuture ) <= 1 && (sumOfRowFuture >= -1)) && 
                    ((sumofColumnFuture ) <= 1 && (sumofColumnFuture >= -1))){
-                           console.log('this child is a neighbor of parent block');
-                           neighbour = true;
-                           neighbourCount += 1
+                        //    console.log('this child is a neighbor of parent block');
+                        neighbour = true;
+                        console.log(neighbourColor)
+                        if(neighbourColor == 'rgb(0, 0, 0)'){
+                            aliveNeighbourCount += 1;
+                        }   
+                        
                            
-       
-                           if (neighbour && (neighbourColor === parentColor)){
-                               parentBlock.style.backgroundColor = 'black';
-                           }
-                           else parentBlock.style.backgroundColor = 'white'; 
-
-                           console.log(parentBlock.style.backgroundColor)
                         
                         }
                     }
+                
                 }
-            console.log(neighbourCount);
+            console.log(aliveNeighbourCount)
             
+            if (aliveNeighbourCount < 1 && (parentColor = 'black') ){
+                parentBlock.style.backgroundColor = 'white';
+            }
+
+            else if (aliveNeighbourCount > 2){
+                parentBlock.style.backgroundColor = 'white';
+            }
+
+            else {
+                parentBlock.style.backgroundColor = 'black';
+            }
+
             }
         }
     }
 
        
-
+    );
    
    
 
+    
+
+
    
 
-gameOfLife();
+// gameOfLife();

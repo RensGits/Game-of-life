@@ -32,11 +32,11 @@
     margin: 0;
     align-items: center;
     justify-content: center;
-    
+    background-color: white;
     border: 1px dotted red;
 }
 
-#block0{
+#block1, #block8,#block9, #block12{
     background-color: black;
 }
 
