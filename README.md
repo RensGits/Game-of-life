@@ -1,5 +1,7 @@
 This is my attempt at making the game of life from scratch with Javascript, without the use of any external sources such as blog posts or video tutorials on the Game of Life. 
 
+*I figured out later that I used a different rule to decide which blocks are neighbours of others. I started out with the idea of neighbours only being blocks around a block, excluding diagnolly attached blocks i.e. von Neumann neighbourhood. I will try to finish the Game with this rule and see what we get.*
+
 My logic is as follows;
 
 1. Create a grid with blocks that have their row and column number as coordinatates as such;
@@ -45,13 +47,13 @@ My logic is as follows;
     The row and column maps are as follows; 
 
 
-    | 1 | 1 | 1 | 1                 1 | 2 | 3 | 4 |                           
+    | 1 | 1 | 1 | 1 |       | 1 | 2 | 3 | 4 |                           
 
-    | 2 | 2 | 2 | 2                 1 | 2 | 3 | 4 |                           
+    | 2 | 2 | 2 | 2 |       | 1 | 2 | 3 | 4 |                           
                                                   
-    | 3 | 3 | ***3*** | 3           1 | 2 | ***3*** | 4 |                           
+    | 3 | 3 | ***3*** | 3 |       | 1 | 2 | ***3*** | 4 |                           
 
-    | 4 | 4 | 4 | 4                 1 | 2 | 3 | 4 |                           
+    | 4 | 4 | 4 | 4 |       | 1 | 2 | 3 | 4 |                           
 
           rows                  columns                                 
 
@@ -59,13 +61,13 @@ My logic is as follows;
     Aplying the logic above we get:
 
 
-    | x | x | x | x | .......... | x | 2 | 3 | 4 |
+    | x | x | x | x |       | x | 2 | 3 | 4 |
 
-    | x | x | x | x | .......... | x | 2 | 3 | 4 |
+    | x | x | x | x |       | x | 2 | 3 | 4 |
 
-    | 3 | 3 | ***3*** | 3 | .......... | x | 2 | ***3*** | 4 |
+    | 3 | 3 | ***3*** | 3 |       | x | 2 | ***3*** | 4 |
     
-    | 4 | 4 | 4 | 4 | .......... | x | 2 | 3 | 4 |
+    | 4 | 4 | 4 | 4 |       | x | 2 | 3 | 4 |
 
           rows                  columns
 
