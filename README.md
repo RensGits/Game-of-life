@@ -85,4 +85,6 @@ My logic is as follows;
     | x | x | 7 | x |
 
 
+    Now we need to find out how many neighbours a parent has. Based on that we will start applying rules for our game.
+
 3. Apply the rules of Game of Life to Neighbours
