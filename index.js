@@ -88,10 +88,13 @@
                sumofColumnFuture = gridColumnCoordinates[blockNumber] - gridColumnCoordinates[b];
        
               
-               if  ((sumOfGridCoordinates != sumOfGridCoordinatePossibleNeighbour) &&   // conditions for Von Neumann neighborhood 
-                   ((sumOfGridCoordinates - sumOfGridCoordinatePossibleNeighbour )<= 1) && 
-                   ((sumOfGridCoordinates - sumOfGridCoordinatePossibleNeighbour ) >= -1) && 
-                   ((sumOfRowFuture ) <= 1 && (sumOfRowFuture >= -1)) && 
+            //   (sumOfGridCoordinates != sumOfGridCoordinatePossibleNeighbour) &&   // conditions for Von Neumann neighborhood 
+                //    ((sumOfGridCoordinates - sumOfGridCoordinatePossibleNeighbour )<= 1) && 
+                //    ((sumOfGridCoordinates - sumOfGridCoordinatePossibleNeighbour ) >= -1) && 
+               
+                
+                if  ( 
+                ((sumOfRowFuture ) <= 1 && (sumOfRowFuture >= -1)) && 
                    ((sumofColumnFuture ) <= 1 && (sumofColumnFuture >= -1))){
                         
                         neighbour = true;
@@ -103,7 +106,7 @@
                     
                     
                     }
-
+                    
                     console.log(aliveNeighbourCount);
 
 
@@ -147,20 +150,20 @@
 
 
                                 
-                if (aliveNeighBourArray[x] < 1 && (parentColor = 'black') ){
+                if (aliveNeighBourArray[x] < 2 && (parentColor = 'black') ){
                     parentBlock.style.backgroundColor = 'white';
                 }
 
-                else if (aliveNeighBourArray[x] = 1){
+                else if (aliveNeighBourArray[x] < 4 && (parentColor = 'black')       ){
                     parentBlock.style.backgroundColor = 'black';
                 }
 
-                else if(aliveNeighBourArray[x] = 2) {
-                    parentBlock.style.backgroundColor = 'black';
-                }
-
-                else if(aliveNeighBourArray[x] > 2){
+                else if (aliveNeighBourArray[x] > 3 && (parentColor = 'black')       ){
                     parentBlock.style.backgroundColor = 'white';
+                }
+
+                else if (aliveNeighBourArray[x] = 3 && (parentColor = 'white')       ){
+                    parentBlock.style.backgroundColor = 'black';
                 }
 
 
