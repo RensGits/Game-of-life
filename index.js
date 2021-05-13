@@ -8,99 +8,185 @@
 
    
    // GRID AND NEIGHBOUR CHECKER //
-   const btn = document.getElementById('button');
-   gridRowCoordinates = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4]
-   gridColumnCoordinates = [1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4,]
 
-   btn.addEventListener("click", 
-   function gameOfLife(){
+   // make two arrays that takes in a number representing the row and column count. 
+   
+//    const gridRowTest = [];
+//    const gridColumnTest = [];
+  
+//    function gridMaker (num){
+//        for (let c = 0; c < num; c++ ){
+//            for (let b = 0; b < num; b++){
+//                 gridRowTest.push(c + 1);
+//             }
+       
+//         } 
+
+//         for (let c = 0; c < num; c++ ){
+//             for (let b = 0; b < num; b++){
+//             gridColumnTest.push(c);
+//             }
+             
+        
+//          } 
+//    }
+
+//    gridMaker(5)
 
    
-   for (let blockNumber = 0; blockNumber < 16;  blockNumber++ ){
 
-       setTimeout(parentChecker(blockNumber), blockNumber * 3000)
+// //   console.log(gridRowTest);
+// //   console.log(gridColumnTest);
+   
+   gridRowCoordinates = [1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,5,5,5,5,5]
+   gridColumnCoordinates = [1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5]
+   
+   
+   const btn = document.getElementById('button');
+   btn.addEventListener("click", gameOfLife)
+   
+   
+   
+   function gameOfLife(){
 
+    let aliveNeighBourArray=[];
     
     
+    
+    
+    
+    
+    
+    for (let blockNumber = 0; blockNumber < 25;  blockNumber++){ // Itterates over each parent block
 
-        function parentChecker(blockNumber){
+       
        
         blockName = 'block' + blockNumber
 
         const parentBlock = document.getElementById(blockName);
         parentColor = window.getComputedStyle(parentBlock).getPropertyValue('background-color');
        
-        //    parentBlock.innerHTML = '<p>' + gridRowCoordinates[blockNumber].toString() +' / ' + gridColumnCoordinates[blockNumber].toString() + '</p>';
+        
        
         const sumOfGridCoordinates = gridRowCoordinates[blockNumber] + gridColumnCoordinates[blockNumber]
        
-        console.log(blockName)
+        
        
        
         let aliveNeighbourCount = 0;
-       
-
-       
-           
-       
         
-       for (let b = 0; b < 16; b++){
-            setTimeout(neighbourChecker(b), b * 3000)
+       
            
-          
-           function neighbourChecker(b){
-              
-           blockNameNeighbour = 'block' + b
-           let neighbour = false;
+        
+        
+       for (let b = 0; b < 25; b++){ // Itterates over each child block for each parent
+            
+         // Checks for each block who is an alive neighbour block 
+                blockNameNeighbour = 'block' + b
+                let neighbour = false;
            
-           const neighbourBlock = document.getElementById(blockNameNeighbour);
-           neighbourColor = window.getComputedStyle(neighbourBlock).getPropertyValue('background-color');
+                const neighbourBlock = document.getElementById(blockNameNeighbour);
+                neighbourColor = window.getComputedStyle(neighbourBlock).getPropertyValue('background-color');
            
-            const sumOfGridCoordinatePossibleNeighbour = gridRowCoordinates[b] + gridColumnCoordinates[b];
-            //   console.log('child-block' + [b])
+                const sumOfGridCoordinatePossibleNeighbour = gridRowCoordinates[b] + gridColumnCoordinates[b];
+           
        
                sumOfRowFuture = gridRowCoordinates[blockNumber] - gridRowCoordinates[b];
                sumofColumnFuture = gridColumnCoordinates[blockNumber] - gridColumnCoordinates[b];
        
               
-               if  ((sumOfGridCoordinates != sumOfGridCoordinatePossibleNeighbour) && 
+               if  ((sumOfGridCoordinates != sumOfGridCoordinatePossibleNeighbour) &&   // conditions for Von Neumann neighborhood 
                    ((sumOfGridCoordinates - sumOfGridCoordinatePossibleNeighbour )<= 1) && 
                    ((sumOfGridCoordinates - sumOfGridCoordinatePossibleNeighbour ) >= -1) && 
                    ((sumOfRowFuture ) <= 1 && (sumOfRowFuture >= -1)) && 
                    ((sumofColumnFuture ) <= 1 && (sumofColumnFuture >= -1))){
-                        //    console.log('this child is a neighbor of parent block');
+                        
                         neighbour = true;
-                        console.log(neighbourColor)
+                        
                         if(neighbourColor == 'rgb(0, 0, 0)'){
                             aliveNeighbourCount += 1;
-                        }   
-                        
-                           
-                        
-                        }
+                        }}
+                    
+                    
+                    
                     }
+
+
+
+
                 
-                }
-            console.log(aliveNeighbourCount)
             
-            if (aliveNeighbourCount < 1 && (parentColor = 'black') ){
-                parentBlock.style.backgroundColor = 'white';
-            }
+            
 
-            else if (aliveNeighbourCount > 2){
-                parentBlock.style.backgroundColor = 'white';
-            }
 
-            else {
-                parentBlock.style.backgroundColor = 'black';
-            }
+            aliveNeighBourArray.push(aliveNeighbourCount);  // updates array of alive blocks per itteration
+           
+           
+
+            
+
+        }
+
+
+
+        console.log(aliveNeighBourArray);
+        godFunction();
+
+        function godFunction(){
+
+
+
+
+            
+            for(let x = 0; x < aliveNeighBourArray.length; x++){
+
+
+            blockName = 'block' + x
+
+            const parentBlock = document.getElementById(blockName);
+            parentColor = window.getComputedStyle(parentBlock).getPropertyValue('background-color');
+
+
+
+
+
+
+
+
+                                
+                if (aliveNeighBourArray[x] < 1 && (parentColor = 'black') ){
+                    parentBlock.style.backgroundColor = 'white';
+                }
+
+                else if (aliveNeighBourArray[x] = 1){
+                    parentBlock.style.backgroundColor = 'black';
+                }
+
+                else if(aliveNeighBourArray[x] = 2) {
+                    parentBlock.style.backgroundColor = 'black';
+                }
+
+                else if(aliveNeighBourArray[x] > 2){
+                    parentBlock.style.backgroundColor = 'white';
+                }
+
+
+
+
+
+
 
             }
         }
+
+
+
+
+
     }
 
        
-    );
+   
    
    
 
@@ -110,3 +196,5 @@
    
 
 // gameOfLife();
+
+
