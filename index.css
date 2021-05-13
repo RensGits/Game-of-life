@@ -12,8 +12,8 @@
     display:grid;
     height: 100%;
     width: 100%;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
     grid-column: 4/8;
     grid-row: 3/9;
     background-color: whitesmoke;
@@ -36,7 +36,7 @@
     border: 1px dotted red;
 }
 
-#block1, #block14, #block19, #block13{
+#block1, #block14, #block19, #block13, #block22, #block21{
     background-color: black;
 }
 

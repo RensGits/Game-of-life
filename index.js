@@ -1,45 +1,38 @@
 
-//    for (let i = 1; i < 10; i++) {
-//     setTimeout(function timer() {
-//       console.log("hello world");
-//     }, i * 3000);
-//   }
-
-
    
    // GRID AND NEIGHBOUR CHECKER //
 
    // make two arrays that takes in a number representing the row and column count. 
    
-//    const gridRowTest = [];
-//    const gridColumnTest = [];
+   const gridRowTest = [];
+   const gridColumnTest = [];
   
-//    function gridMaker (num){
-//        for (let c = 0; c < num; c++ ){
-//            for (let b = 0; b < num; b++){
-//                 gridRowTest.push(c + 1);
-//             }
+   function gridMaker (num){
+       for (let c = 0; c < num; c++ ){
+           for (let b = 0; b < num; b++){
+                gridRowTest.push(c + 1);
+            }
        
-//         } 
+        } 
 
-//         for (let c = 0; c < num; c++ ){
-//             for (let b = 0; b < num; b++){
-//             gridColumnTest.push(c);
-//             }
+        for (let c = 0; c < num; c++ ){
+            for (let b = 0; b < num; b++){
+            gridColumnTest.push(c);
+            }
              
         
-//          } 
-//    }
+         } 
+   }
 
-//    gridMaker(5)
+   gridMaker(10)
 
    
 
-// //   console.log(gridRowTest);
-// //   console.log(gridColumnTest);
+//   console.log(gridRowTest);
+//   console.log(gridColumnTest);
    
-   gridRowCoordinates = [1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,5,5,5,5,5]
-   gridColumnCoordinates = [1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5]
+   gridRowCoordinates = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+   gridColumnCoordinates = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
    
    
    const btn = document.getElementById('button');
@@ -57,7 +50,7 @@
     
     
     
-    for (let blockNumber = 0; blockNumber < 25;  blockNumber++){ // Itterates over each parent block
+    for (let blockNumber = 0; blockNumber < 100;  blockNumber++){ // Itterates over each parent block
 
        
        
@@ -75,11 +68,11 @@
        
         let aliveNeighbourCount = 0;
         
-       
+       console.log(blockName);
            
         
         
-       for (let b = 0; b < 25; b++){ // Itterates over each child block for each parent
+       for (let b = 0; b < 100; b++){ // Itterates over each child block for each parent
             
          // Checks for each block who is an alive neighbour block 
                 blockNameNeighbour = 'block' + b
@@ -111,7 +104,7 @@
                     
                     }
 
-
+                    console.log(aliveNeighbourCount);
 
 
                 
