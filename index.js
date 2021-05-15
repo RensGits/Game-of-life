@@ -160,23 +160,26 @@
 
 
                 if(parentColor === 'rgb(0, 0, 0)' ){
-                    console.log('black!')
+                    
                     if (aliveNeighBourArray[x] < 2 ){
-                        parentColor === 'rgb(255, 255, 255)';
+                        parentBlock.style.backgroundColor === 'rgb(255, 255, 255)';
+                        console.log('< 2 and black')
                     }
                     else if (aliveNeighBourArray[x] > 3 ){
-                        parentColor === 'rgb(255, 255, 255)'
+                        parentBlock.style.backgroundColor === 'rgb(255, 255, 255)'
+                        console.log('>3 and black')
                     }
                 }
 
                 else if(parentColor === 'rgb(255, 255, 255)'){
-                    console.log('white!')
+                    
                     if(aliveNeighBourArray[x] === 3){
-                        parentColor === 'rgb(0, 0, 0)'
+                        parentBlock.style.backgroundColor = 'rgb(0, 0, 0)'
+                        console.log('3 and white')
                     }
                 }
 
-                else {parentColor === 'rgb(255, 255, 255)'}
+                else {parentBlock.style.backgroundColor === 'rgb(255, 255, 255)'}
 
     
 
