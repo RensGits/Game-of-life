@@ -32,7 +32,7 @@
 //   console.log(gridColumnTest);
    
    gridRowCoordinates = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
-   gridColumnCoordinates = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+   gridColumnCoordinates = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ,1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ,1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ,1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ,1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
    
    
    const btn = document.getElementById('button');
@@ -65,10 +65,10 @@
        
         
        
-       
+        let neighbourCount = -1;
         let aliveNeighbourCount = 0;
         
-       console.log(blockName);
+      
            
         
         
@@ -76,13 +76,13 @@
             
          // Checks for each block who is an alive neighbour block 
                 blockNameNeighbour = 'block' + b
-                let neighbour = false;
+               
            
                 const neighbourBlock = document.getElementById(blockNameNeighbour);
                 neighbourColor = window.getComputedStyle(neighbourBlock).getPropertyValue('background-color');
            
                 const sumOfGridCoordinatePossibleNeighbour = gridRowCoordinates[b] + gridColumnCoordinates[b];
-           
+
        
                sumOfRowFuture = gridRowCoordinates[blockNumber] - gridRowCoordinates[b];
                sumofColumnFuture = gridColumnCoordinates[blockNumber] - gridColumnCoordinates[b];
@@ -93,11 +93,21 @@
                 //    ((sumOfGridCoordinates - sumOfGridCoordinatePossibleNeighbour ) >= -1) && 
                
                 
+                // console.log(sumOfRowFuture);
+
                 if  ( 
+
+                    (b != blockNumber) &&
                 ((sumOfRowFuture ) <= 1 && (sumOfRowFuture >= -1)) && 
-                   ((sumofColumnFuture ) <= 1 && (sumofColumnFuture >= -1))){
+                   ((sumofColumnFuture ) <= 1 && (sumofColumnFuture >= -1))
+                    
+
+                    
+                   
+                   ){
                         
-                        neighbour = true;
+                        neighbourCount += 1; 
+                      
                         
                         if(neighbourColor == 'rgb(0, 0, 0)'){
                             aliveNeighbourCount += 1;
@@ -106,9 +116,8 @@
                     
                     
                     }
+                  
                     
-                    console.log(aliveNeighbourCount);
-
 
                 
             
@@ -125,7 +134,6 @@
 
 
 
-        console.log(aliveNeighBourArray);
         godFunction();
 
         function godFunction(){
@@ -142,35 +150,35 @@
             const parentBlock = document.getElementById(blockName);
             parentColor = window.getComputedStyle(parentBlock).getPropertyValue('background-color');
 
+                console.log(blockName);
+               
+                console.log('alive neighbours: ' + aliveNeighBourArray[x]);
 
 
 
+                
 
 
-
-
-                                
-                if (aliveNeighBourArray[x] < 2 && (parentColor = 'black') ){
-                    parentBlock.style.backgroundColor = 'white';
+                if(parentColor === 'rgb(0, 0, 0)' ){
+                    console.log('black!')
+                    if (aliveNeighBourArray[x] < 2 ){
+                        parentColor === 'rgb(255, 255, 255)';
+                    }
+                    else if (aliveNeighBourArray[x] > 3 ){
+                        parentColor === 'rgb(255, 255, 255)'
+                    }
                 }
 
-                else if (aliveNeighBourArray[x] < 4 && (parentColor = 'black')       ){
-                    parentBlock.style.backgroundColor = 'black';
+                else if(parentColor === 'rgb(255, 255, 255)'){
+                    console.log('white!')
+                    if(aliveNeighBourArray[x] === 3){
+                        parentColor === 'rgb(0, 0, 0)'
+                    }
                 }
 
-                else if (aliveNeighBourArray[x] > 3 && (parentColor = 'black')       ){
-                    parentBlock.style.backgroundColor = 'white';
-                }
+                else {parentColor === 'rgb(255, 255, 255)'}
 
-                else if (aliveNeighBourArray[x] = 3 && (parentColor = 'white')       ){
-                    parentBlock.style.backgroundColor = 'black';
-                }
-
-
-
-
-
-
+    
 
             }
         }
