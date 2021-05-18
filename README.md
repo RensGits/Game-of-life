@@ -1,8 +1,13 @@
-This is my attempt at making the game of life from scratch with Javascript, without the use of any external sources such as blog posts or video tutorials on the Game of Life. 
+The game of Life is a cellular automaton devised by the British mathematician John Horton Conway in 1970. A cellular automaton consists of a regular grid of cells, each in one of a finite number of states such as on and off or in this case, alive or dead. For each cell, a set of cells called its neighborhood is defined relative to the specified cell. In the original Game of Life, the neighborhood consists of both horizontal, vertical and diagonal cells.
 
-*I figured out later that I used a different rule to decide which blocks are neighbours of others. I started out with the idea of neighbours only being blocks around a block, excluding diagnolly attached blocks i.e. von Neumann neighbourhood. I will try to finish the Game with this rule and see what we get.*
+Every cell interacts with its neighbours according to the rules defined on the right. The default rules of the game of life are now set, but feel free to play around with your own rules.
+
+This is my attempt at making the game of life from scratch with Javascript, without the use of any external sources such as blog posts or video tutorials on the Game of Life. As I just learned CSS Grid, and are trying to master DOM manipulation, I figured I'd combine the two to acchieve my goals.
+
 
 My logic is as follows;
+
+
 
 1. Create a grid with blocks that have their row and column number as coordinatates as such;
 
@@ -14,35 +19,14 @@ My logic is as follows;
 
     | 4,1 | 4,2 | 4,3 | 4,4 |
 
-2. The sum of all grid items is mapped to compare each item with each other item by itterating over it.
 
-    | 2 | 3 | 4 | 5 |
 
-    | 3 | 4 | 5 | 6 |
+2. Define the neighbourhood;
 
-    | 4 | 5 | **6** | 7 |
+    To see which items are neighbours off every other item, non-neighbours can be crossed off for such item if the following logic aplies (I will refer to the item that is checked against all other items as the parent item, and the items that it is checked against as it's children); 
 
-    | 5 | 6 | 7 | 8 |
-
-    To see which items are neighbours off every other item, non-neighbours can be crossed of for such item if the following logic aplies (I will refer to the item that is checked against all other items as the parent item, and the items that it is checked against as children); 
-    
-    - The sum of the coordinates of a child is equal to that of the parent.
-    - The sum of the coordinates of a child is bigger than 1 and smaller then -1 to that of the parent. 
-
-    Lets say we check which children are neighbours of the parent at coordinates 3,3 (i.e. item 11 in itteration). We cross of each grid item that doesn't follow the logic mentioned above.
-
-    | x | x | x | 5 |
-
-    | x | x | 5 | x |
-
-    | x | 5 | ***6*** | 7 |
-
-    | 5 | x | 7 | x |
-
-    To eliminate the rest of the children (don't take this out of context), we apply the second rule to the individual row and column numbers, i.e;
-
-    - The difference between the row numbers of a child compared to a parent is bigger than 1 or smaller then -1.
-    - The difference between the column numbers of a child compared to a parent is bigger than 1 or smaller then -1. 
+    - The difference between the row numbers of a child compared to the parent is bigger than 1 or smaller then -1.
+    - The difference between the column numbers of a child compared to the parent is bigger than 1 or smaller then -1. 
 
     The row and column maps are as follows; 
 
@@ -63,7 +47,7 @@ My logic is as follows;
 
     | x | x | x | x |       | x | 2 | 3 | 4 |
 
-    | x | x | x | x |       | x | 2 | 3 | 4 |
+    | 2 | 2 | 2 | 2 |       | x | 2 | 3 | 4 |
 
     | 3 | 3 | ***3*** | 3 |       | x | 2 | ***3*** | 4 |
     
@@ -71,10 +55,35 @@ My logic is as follows;
 
           rows                  columns
 
+    Combining the two results in:
+
+    | x,x | x,x | x,x | x,x |
+
+    | x,x | 2,2 | 2,3 | 2,4 |
+
+    | x,x | 3,2 | ***3,3*** | 3,4 |
+
+    | x,x | 4,2 | 4,3 | 4,4 |
 
 
+    *Implemented in the future*
 
-    All the combined elminated children results in:
+    As a variation on the neighbour rules of the original Game of Life, I also wanted to implement the rules of von Neumann neighborhood where only vertical and horizontal blocks are seen as neighbours. 
+
+    To cross off diagonal neighbours, we can add the following logic:
+
+    - The sum of the coordinates of a child is equal to that of the parent.
+    - The sum of the coordinates of a child is bigger than 1 and smaller then -1 to that of the parent. 
+
+    | x | x | x | x |
+
+    | x | 4 | 5 | 6 |
+
+    | x | 5 | ***3,3*** | 7 |
+
+    | x | 6 | 7 | 8 |
+
+    results in:
 
     | x | x | x | x |
 
@@ -84,7 +93,16 @@ My logic is as follows;
 
     | x | x | 7 | x |
 
+    In my code I loop over all children for each parent and check if these rules apply. Then, if a block is alive (in this case black), I push '1' to an array and '0' if the block is dead. Doing so, I'm able to update the status of each block per generation, preventing the result of the previous block to influence the one thereafter. I then loop over all the blocks again and update their status according to the the rules of Game of Life will be applied accordingly.
 
-    Now we need to find out how many neighbours a parent has. Based on that we will start applying rules for our game.
+3. Apply the rules of Game of Life to Neighbours;
 
-3. Apply the rules of Game of Life to Neighbours
+    The rules of Game of Life are as follows:
+
+    1. Any live cell with 2 to 3 live neighbours survives.
+    2.Any dead cell with 3 live neighbours becomes a live cell.
+    3.All other live cells die in the next generation. Similarly, all other dead cells stay dead.
+
+
+
+
